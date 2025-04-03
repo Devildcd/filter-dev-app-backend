@@ -1,0 +1,42 @@
+# Dependencias
+/node_modules
+
+# Variables de entorno
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+
+# Archivos de IDE/Editor
+.vscode/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de sesión y caché
+.sessions/
+*.session
+
+# Archivos de coverage (si usas pruebas)
+coverage/
+.nyc_output/
+
+# Archivos de compilación (si usas TypeScript/Babel)
+dist/
+build/
+*.js.map
+*.tsbuildinfo
+
+# Configuración personalizada
+/config/*.local.*
+
+# Archivos de uploads (si manejas subida de archivos)
+/uploads/
+/temp/
