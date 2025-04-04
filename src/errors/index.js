@@ -13,7 +13,7 @@ export class UserRegistrationError extends AppError {
 }
 
 export class AccountLockedError extends AppError {
-  constructor(message = 'Account is locked', unlockTime) {
+  constructor(message = 'Account is locked', unlockTime = null) {
     super(message, 403, 'ACCOUNT_LOCKED', { unlockTime });
   }
 }
@@ -39,5 +39,11 @@ export class TokenGenerationError extends AppError {
 export class CookieSettingError extends AppError {
   constructor(message = 'Failed to set cookie') {
     super(message, 500, 'COOKIE_SETTING_FAILED');
+  }
+}
+
+export class NotFoundError extends AppError {
+  constructor(message = "Resource not found") {
+    super(message, 404, "RESOURCE_NOT_FOUND");
   }
 }

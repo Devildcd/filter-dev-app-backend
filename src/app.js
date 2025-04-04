@@ -8,6 +8,7 @@ import { config, connectDB } from './config/index.js';
 
 import indexRoutes from './routes/index.js';
 import authRoutes from './routes/auth.js';
+import userRoutes from './routes/user.js';
 
 const app = express();
 
@@ -25,5 +26,6 @@ app.use("/uploads/documents", express.static("uploads/documents"));
 // Routes
 app.use('/', indexRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
 
 export default app;
