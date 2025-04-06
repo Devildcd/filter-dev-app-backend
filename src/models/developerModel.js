@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 import validator from "validator";
 
-const isValidUser = async (userId) => mongoose.model("User").exists({ _id: userId });
+const isValidUser = async (userId) =>
+  mongoose.model("User").exists({ _id: userId });
 
 const developerSchema = new mongoose.Schema(
   {
@@ -26,7 +27,11 @@ const developerSchema = new mongoose.Schema(
       default: () => new Map(),
       validate: {
         validator: (links) =>
-          !links || links.size === 0 || [...links.values()].every((url) => validator.isURL(url, { require_protocol: true })),
+          !links ||
+          links.size === 0 ||
+          [...links.values()].every((url) =>
+            validator.isURL(url, { require_protocol: true })
+          ),
         message: "One or more social links contain invalid URLs",
       },
     },
@@ -53,33 +58,40 @@ developerSchema.methods = {
   async verify() {
     if (!this.verified) {
       this.verified = true;
-      return this.save();
+      await this.save();
     }
+    return this;
   },
   async unverify() {
     if (this.verified) {
       this.verified = false;
-      return this.save();
+      await this.save();
     }
+    return this;
   },
   async addProject(projectId) {
     if (!this.projects.includes(projectId)) {
       this.projects.push(projectId);
-      return this.save();
+      await this.save();
     }
+    return this;
   },
   async removeProject(projectId) {
-    this.projects = this.projects.filter((id) => id.toString() !== projectId.toString());
-    return this.save();
+    const projectIdStr = projectId.toString();
+    this.projects = this.projects.filter(
+      (id) => id.toString() !== projectIdStr
+    );
+    await this.save();
+    return this;
   },
 };
 
 /** 🔹 Métodos estáticos */
 developerSchema.statics = {
-  async getVerifiedDevelopers() {
+  getVerifiedDevelopers() {
     return this.find({ verified: true });
   },
-  async findByUserId(userId) {
+  findByUserId(userId) {
     return this.findOne({ user_id: userId });
   },
 };

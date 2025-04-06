@@ -7,8 +7,9 @@ import cookieParser from 'cookie-parser';
 import { config, connectDB } from './config/index.js';
 
 import indexRoutes from './routes/index.js';
-import authRoutes from './routes/auth.js';
-import userRoutes from './routes/user.js';
+import authRoutes from './routes/auth.routes.js';
+import userRoutes from './routes/user.routes.js';
+import developerRoutes from './routes/developers.routes.js';
 
 const app = express();
 
@@ -27,5 +28,6 @@ app.use("/uploads/documents", express.static("uploads/documents"));
 app.use('/', indexRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/developers', developerRoutes);
 
 export default app;

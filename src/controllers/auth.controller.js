@@ -1,22 +1,14 @@
 import asyncHandler from 'express-async-handler';
 import { loginUser, registerUser, logoutUser } from '../services/auth.service.js';
 import { refreshAccessToken } from '../services/token.service.js'
+import { sendResponse } from '../utils/apiResponse.js';
 
 export const register = asyncHandler(async (req, res) => {
     const { name, email, password, passwordConfirmed, role } = req.body;
   
-    const user = await registerUser(name, email, password, passwordConfirmed, role);
+    const userData = await registerUser(name, email, password, passwordConfirmed, role);
   
-    res.status(201).json({
-      message: "User registered successfully",
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        access_code: user.access_code,
-      },
-    });
+   sendResponse(res, 200, "User registered successfully", userData);
   });
 
   export const login = asyncHandler(async (req, res) => {
