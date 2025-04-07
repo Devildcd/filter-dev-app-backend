@@ -16,10 +16,16 @@ const developerSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      validate: {
-        validator: (value) => /^([1-9A-HJ-NP-Za-km-z]{32,44})$/.test(value), // Validación para direcciones Solana
-        message: "Invalid Solana wallet address",
-      },
+      // validate: {
+      //   validator: (value) => /^([1-9A-HJ-NP-Za-km-z]{32,44})$/.test(value), 
+      //   message: "Invalid Solana wallet address",
+      // },
+    },
+    bio: {
+      type: String,
+      trim: true,
+      minlength: [3, "Biography must be at least 3 characters long"],
+      maxlength: [500, "Biography cannot exceed 500 characters"],
     },
     social_links: {
       type: Map,
@@ -35,7 +41,7 @@ const developerSchema = new mongoose.Schema(
         message: "One or more social links contain invalid URLs",
       },
     },
-    projects: [{ type: mongoose.Schema.Types.ObjectId, ref: "Project" }],
+    // projects: [{ type: mongoose.Schema.Types.ObjectId, ref: "Project" }],
     verified: { type: Boolean, default: false, index: true },
   },
   {
@@ -49,7 +55,14 @@ const developerSchema = new mongoose.Schema(
         return ret;
       },
     },
-    toObject: { virtuals: true },
+    toObject: {
+      virtuals: true,
+      transform: (_, ret) => {
+        delete ret._id;
+        ret.social_links = Object.fromEntries(ret.social_links || []);
+        return ret;
+      },
+    },
   }
 );
 
