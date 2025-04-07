@@ -15,13 +15,6 @@ const performanceSchema = new mongoose.Schema(
 
 const projectSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-      maxlength: 100,
-    },
     developer_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Developer",
@@ -31,6 +24,14 @@ const projectSchema = new mongoose.Schema(
           return await mongoose.model("Developer").exists({ _id: developerId });
         },
       },
+    },
+    name: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+      minlength: [3, "Project name must be at least 3 characters long"],
+      maxlength: [100, "Project name must be at most 100 characters long"],
     },
     launch_date: {
       type: Date,
@@ -118,3 +119,6 @@ projectSchema.methods = {
       return this.save();
     }
   };
+
+  const Project = mongoose.model("Project", projectSchema);
+  export default Project;
