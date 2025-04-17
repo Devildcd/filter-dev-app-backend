@@ -8,5 +8,6 @@ export const config = {
     nodeEnv: process.env.NODE_ENV || 'development',
     corsOrigin: process.env.CORS_ORIGIN?.split(',') || '*',
     jwtSecretKey: process.env.JWT_SECRET,
-    jwtRefreshKey: process.env.JWT_REFRESH_SECRET
+    jwtRefreshKey: process.env.JWT_REFRESH_SECRET,
+    serverUrl: process.env.SERVER_URL
 };
