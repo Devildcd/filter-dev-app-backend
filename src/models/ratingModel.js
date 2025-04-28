@@ -48,40 +48,5 @@ const ratingSchema = new mongoose.Schema(
 ratingSchema.index({ user_id: 1 });
 ratingSchema.index({ developer_id: 1 });
 
-/** 🔹 Métodos de instancia */
-ratingSchema.methods = {
-  async updateScore(newScore) {
-    if (newScore < 1 || newScore > 5)
-      throw new Error("Score must be between 1 and 5");
-    this.score = newScore;
-    return this.save();
-  },
-  async updateComment(newComment) {
-    this.comment = newComment?.trim().slice(0, 500) || "";
-    return this.save();
-  },
-};
-
-/** 🔹 Métodos estáticos */
-ratingSchema.statics = {
-  async getAverageRating(developerId) {
-    const result = await this.aggregate([
-      {
-        $match: {
-          developer_id: new mongoose.Types.ObjectId(String(developerId)),
-        },
-      },
-      { $group: { _id: "$developer_id", avgScore: { $avg: "$score" } } },
-    ]);
-    return result[0]?.avgScore || 0;
-  },
-  async getRatingsForDeveloper(developerId) {
-    return this.find({ developer_id: developerId }).populate(
-      "user_id",
-      "name"
-    );
-  },
-};
-
 const Rating = mongoose.model("Rating", ratingSchema);
 export default Rating;

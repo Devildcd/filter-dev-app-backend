@@ -11,6 +11,7 @@ import authRoutes from './routes/auth.routes.js';
 import userRoutes from './routes/user.routes.js';
 import developerRoutes from './routes/developers.routes.js';
 import projectRoutes from './routes/project.routes.js';
+import ratingRoutes from './routes/rating.routes.js';
 
 const app = express();
 
@@ -31,5 +32,6 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/developers', developerRoutes);
 app.use('/api/projects', projectRoutes);
+app.use('/api/ratings', ratingRoutes);
 
 export default app;
