@@ -13,6 +13,7 @@ import developerRoutes from './routes/developers.routes.js';
 import projectRoutes from './routes/project.routes.js';
 import ratingRoutes from './routes/rating.routes.js';
 import visitRoutes from './routes/visit.routes.js';
+import followRoutes from './routes/follow.routes.js';
 
 const app = express();
 
@@ -35,5 +36,6 @@ app.use('/api/developers', developerRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/ratings', ratingRoutes);
 app.use('/api/visits', visitRoutes);
+app.use('/api/follows', followRoutes);
 
 export default app;
