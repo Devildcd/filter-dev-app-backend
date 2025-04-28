@@ -1,41 +1,16 @@
 import asyncHandler from "express-async-handler";
-import { countVisits, registerVisit } from "../services/visit.service";
+import { sendResponse } from "../utils/apiResponse.js";
+import { countVisitsForDeveloper, storeVisit } from "../services/visit.service.js";
 
-export const getVisitCount = asyncHandler(async (req, res) => {
-    const { developerId } = req.params;
-    
-    if (!developerId) {
-        res.status(400);
-        throw new Error('Developer ID is required');
-    }
-
-    const count = await countVisits(developerId);
-    
-    res.status(200).json({
-        success: true,
-        data: {
-            visitCount: count
-        },
-        message: 'Visit count retrieved successfully'
-    });
+// Get /visits/:id/developer
+export const getVisistForDeveloper = asyncHandler( async (req, res) => {
+    const {id: developerId} = req.params;
+    const visits = await countVisitsForDeveloper(developerId);
+    sendResponse(res, 200, "Visits retrieved successfuly", { visits });
 });
 
-export const addVisit = asyncHandler(async (req, res) => {
-    const { developerId } = req.body;
-    
-    if (!developerId) {
-        res.status(400);
-        throw new Error('Developer ID is required');
-    }
-
-    const userId = req.user?._id || null;  
-    const ip = req.ip;
-
-    const newVisit = await registerVisit(developerId, userId, ip);
-    
-    res.status(201).json({
-        success: true,
-        data: newVisit,
-        message: 'Visit registered successfully'
-    });
+// Post /visits
+export const createVisit = asyncHandler( async (req, res) => {
+   const created = await storeVisit(req.body);
+   sendResponse(res, 201, "Visit created successfully", created);
 });

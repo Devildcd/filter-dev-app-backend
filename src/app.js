@@ -12,6 +12,7 @@ import userRoutes from './routes/user.routes.js';
 import developerRoutes from './routes/developers.routes.js';
 import projectRoutes from './routes/project.routes.js';
 import ratingRoutes from './routes/rating.routes.js';
+import visitRoutes from './routes/visit.routes.js';
 
 const app = express();
 
@@ -33,5 +34,6 @@ app.use('/api/users', userRoutes);
 app.use('/api/developers', developerRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/ratings', ratingRoutes);
+app.use('/api/visits', visitRoutes);
 
 export default app;
