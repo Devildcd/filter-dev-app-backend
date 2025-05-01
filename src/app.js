@@ -3,18 +3,9 @@ import cors from 'cors';
 import helmet from "helmet";
 import morgan from "morgan";
 import cookieParser from 'cookie-parser';
+import routes from "./routes/index.js";
 
 import { config, connectDB } from './config/index.js';
-
-import indexRoutes from './routes/index.js';
-import authRoutes from './routes/auth.routes.js';
-import userRoutes from './routes/user.routes.js';
-import developerRoutes from './routes/developers.routes.js';
-import projectRoutes from './routes/project.routes.js';
-import ratingRoutes from './routes/rating.routes.js';
-import visitRoutes from './routes/visit.routes.js';
-import followRoutes from './routes/follow.routes.js';
-import notificationRoutes from './routes/notification.routes.js';
 
 const app = express();
 
@@ -30,14 +21,6 @@ app.use(cookieParser());
 app.use("/uploads/documents", express.static("uploads/documents"));
 
 // Routes
-app.use('/', indexRoutes);
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/developers', developerRoutes);
-app.use('/api/projects', projectRoutes);
-app.use('/api/ratings', ratingRoutes);
-app.use('/api/visits', visitRoutes);
-app.use('/api/follows', followRoutes);
-app.use('/api/notifications', notificationRoutes);
+app.use("/api", routes);
 
 export default app;
