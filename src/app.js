@@ -14,6 +14,7 @@ import projectRoutes from './routes/project.routes.js';
 import ratingRoutes from './routes/rating.routes.js';
 import visitRoutes from './routes/visit.routes.js';
 import followRoutes from './routes/follow.routes.js';
+import notificationRoutes from './routes/notification.routes.js';
 
 const app = express();
 
@@ -37,5 +38,6 @@ app.use('/api/projects', projectRoutes);
 app.use('/api/ratings', ratingRoutes);
 app.use('/api/visits', visitRoutes);
 app.use('/api/follows', followRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 export default app;
