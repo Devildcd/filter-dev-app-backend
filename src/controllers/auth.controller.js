@@ -4,9 +4,9 @@ import { refreshAccessToken } from '../services/token.service.js'
 import { sendResponse } from '../utils/apiResponse.js';
 
 export const register = asyncHandler(async (req, res) => {
-    const { name, email, password, passwordConfirmed, role } = req.body;
+    const { name, email, phone, password, passwordConfirmed, role } = req.body;
   
-    const userData = await registerUser(name, email, password, passwordConfirmed, role);
+    const userData = await registerUser(name, email, phone, password, passwordConfirmed, role);
   
    sendResponse(res, 200, "User registered successfully", userData);
   });

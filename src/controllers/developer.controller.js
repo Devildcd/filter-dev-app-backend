@@ -17,7 +17,7 @@ export const getDevelopers = asyncHandler(async (req, res) => {
     verified,
   } = req.query;
 
-  const result = await getAllDevelopers(
+  const result =  getAllDevelopeawaitrs(
     Number(page),
     Number(limit),
     sortBy,

@@ -10,10 +10,10 @@ import {
 
 const router = express.Router();
 
-router.get("/", authMiddleware, getProjects);
-router.get("/:id", authMiddleware, showProject);
-router.post("/", authMiddleware, createProject);
-router.put("/:id", authMiddleware, editProject);
-router.delete("/:id", authMiddleware, destroyProject);
+router.get("/", getProjects);
+router.get("/:id", showProject);
+router.post("/", createProject);
+router.put("/:id", editProject);
+router.delete("/:id", destroyProject);
 
 export default router;

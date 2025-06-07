@@ -17,6 +17,21 @@ const userSchema = new mongoose.Schema(
       default: "USER",
       uppercase: true,
     },
+     phone: {
+    type: String,
+    required: [true, "El número de teléfono es obligatorio"],
+    trim: true,
+    unique: true,
+    minlength: [8, "El teléfono debe tener exactamente 8 dígitos"],
+    maxlength: [8, "El teléfono debe tener exactamente 8 dígitos"],
+    validate: {
+      validator: function(v) {
+        // Comprueba que sean sólo dígitos y exactamente 8 caracteres
+        return /^\d{8}$/.test(v);
+      },
+      message: props => `‘${props.value}’ no es un número de teléfono válido. Debe contener exactamente 8 dígitos numéricos.`
+    }
+  },
     email: {
       type: String,
       // required: [true, "Email is required"],

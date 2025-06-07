@@ -83,7 +83,7 @@ export const generateRefreshToken = async (user) => {
     await User.findByIdAndUpdate(user._id, { tokenVersion: user.tokenVersion });
 
     const options = {
-      expiresIn: "7d", // Expira en 7 días (ajústalo según tu necesidad)
+      expiresIn: "7d", // Expira en 7 días 
     };
 
     const payload = {

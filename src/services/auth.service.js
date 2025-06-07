@@ -26,6 +26,7 @@ import { generateUniqueAccessCode } from "../utils/generateCode.js";
 export const registerUser = async (
   name,
   email,
+  phone,
   password,
   passwordConfirmed,
   role = "USER"
@@ -37,6 +38,14 @@ export const registerUser = async (
 
     if (!validator.isEmail(email)) {
       throw new Error("Invalid email address");
+    }
+
+     const trimmedPhone = phone.trim();
+    const phoneRegex = /^\d{8}$/;
+    if (!phoneRegex.test(trimmedPhone)) {
+      throw new Error(
+        "El teléfono debe contener exactamente 8 dígitos numéricos"
+      );
     }
 
     if (password !== passwordConfirmed) {
@@ -60,6 +69,7 @@ export const registerUser = async (
     const user = await User.create({
       name: name.trim(),
       email: email.toLowerCase().trim(),
+      phone: trimmedPhone,
       password: hashedPassword,
       role: role.toUpperCase(),
       access_code: accessCode,

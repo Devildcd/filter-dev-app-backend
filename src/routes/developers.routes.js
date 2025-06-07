@@ -4,10 +4,10 @@ import { createDeveloper, destroyDeveloper, editDeveloper, getDevelopers, showDe
 
 const router = express.Router();
 
-router.get("/", authMiddleware,  getDevelopers);
-router.get("/:id", authMiddleware,  showDeveloper);
-router.post("/", authMiddleware,  createDeveloper);
-router.put("/:id", authMiddleware, editDeveloper);
-router.delete("/:id", authMiddleware, destroyDeveloper);
+router.get("/",  getDevelopers);
+router.get("/:id",  showDeveloper);
+router.post("/",  createDeveloper);
+router.put("/:id", editDeveloper);
+router.delete("/:id", destroyDeveloper);
 
 export default router;

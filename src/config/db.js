@@ -11,6 +11,7 @@ import { config } from './env.js';
 //     }
 // };
 
+// URL en la nube
 const connectDB = async() => {
     try {
         await mongoose.connect(config.serverUrl);

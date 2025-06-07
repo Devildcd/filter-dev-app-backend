@@ -5,10 +5,10 @@ import { imageUpload } from "../middlewares/imageUpload.middleware.js";
 
 const router = express.Router();
 
-router.get("/", authMiddleware, getUsers);
-router.get("/:id", authMiddleware, getUserAuth);
-router.put("/:id", authMiddleware, editUser);
-router.post("/:id/profile-image", authMiddleware, imageUpload.single("image"), uploadProfileImage);
-router.delete("/:id", authMiddleware, destroyUser);
+router.get("/", getUsers);
+router.get("/:id", getUserAuth);
+router.put("/:id", editUser);
+router.post("/:id/profile-image", imageUpload.single("image"), uploadProfileImage);
+router.delete("/:id", destroyUser);
 
 export default router;
