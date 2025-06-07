@@ -2,9 +2,9 @@ import {config} from './config/env.js';
 import app from './app.js';
 import connectDB from './config/db.js';
 // Web Socket
-import http from 'http';
-import { Server as IOServer } from 'socket.io';
-import { initSockets } from './sockets/index.js';
+// import http from 'http';
+// import { Server as IOServer } from 'socket.io';
+// import { initSockets } from './sockets/index.js';
 
 const PORT = config.port;
 
