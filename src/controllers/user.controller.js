@@ -16,12 +16,14 @@ export const getUsers = async (req, res) => {
 };
 
 export const getUserAuth = asyncHandler(async (req, res) => {
-  const user = await getAuthenticatedUser(req.user.id);
+  const user = await getAuthenticatedUser(req.params.id);
+  // const user = await getAuthenticatedUser(req.user.id);
   sendResponse(res, 200, "User retrieved successfully", user);
 });
 
 export const editUser = asyncHandler(async (req, res) => {
-  const updatedUser = await updateUser(req.user.id, req.body);
+  // const updatedUser = await updateUser(req.user.id, req.body);
+  const updatedUser = await updateUser(req.params.id, req.body);
   sendResponse(res, 200, "User updated succesfully", updatedUser);
 });
 

@@ -165,7 +165,13 @@ export const loginUser = async (email, password, res) => {
 
     console.log(`User ${user.email} logged in at ${new Date()}`);
 
-    return accessToken;
+    // return accessToken
+    const { 
+      _id, name, email: userEmail, phone, role, profileImage, is_active, createdAt, updatedAt 
+    } = user;
+    return { 
+      _id, name, email: userEmail, phone, role, profileImage, is_active, createdAt, updatedAt 
+    };
   } catch (error) {
     console.error("Login failed:", error);
 

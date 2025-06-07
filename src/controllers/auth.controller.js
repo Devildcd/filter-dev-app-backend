@@ -13,9 +13,10 @@ export const register = asyncHandler(async (req, res) => {
 
   export const login = asyncHandler(async (req, res) => {
     const {email, password} = req.body;
-    const accessToken = await loginUser(email, password, res);
+    // const accessToken = await loginUser(email, password, res);
+    const user = await loginUser(email, password, res);
 
-    res.status(200).json({message: 'Logged in', accessToken});
+    res.status(200).json({message: 'Logged in', user});
   });
 
   export const refreshToken = asyncHandler(async (req, res) => {

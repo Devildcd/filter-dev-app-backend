@@ -13,7 +13,8 @@ connectDB();
 
 // Middlewares
 app.use(express.json());
-app.use(cors({ origin: config.corsOrigin }));
+// app.use(cors({ origin: config.corsOrigin }));
+app.use(cors());
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
